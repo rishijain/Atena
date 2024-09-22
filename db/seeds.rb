@@ -20,7 +20,8 @@ RentAgreement.create([
     owner_name: 'John Doe',
     owner_phone_number: '555-1234',
     rent_amount: 1200.00,
-    deposit: 1200.00
+    deposit: 1200.00,
+    name: 'John Doe Rent Agreement'  # Added name field
   },
   {
     from: DateTime.now,
@@ -29,7 +30,8 @@ RentAgreement.create([
     owner_name: 'Jane Smith',
     owner_phone_number: '555-5678',
     rent_amount: 1500.00,
-    deposit: 1500.00
+    deposit: 1500.00,
+    name: 'Jane Smith Rent Agreement'  # Added name field
   },
   {
     from: DateTime.now,
@@ -38,6 +40,7 @@ RentAgreement.create([
     owner_name: 'Alice Johnson',
     owner_phone_number: '555-8765',
     rent_amount: 1800.00,
-    deposit: 1800.00
+    deposit: 1800.00,
+    name: 'Alice Johnson Rent Agreement'  # Added name field
   }
 ])
