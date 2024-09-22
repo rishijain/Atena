@@ -7,3 +7,37 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+# Clear existing records
+RentAgreement.destroy_all
+
+# Create sample rent agreements
+RentAgreement.create([
+  {
+    from: DateTime.now,
+    to: DateTime.now + 1.month,
+    address: '123 Main St, Springfield',
+    owner_name: 'John Doe',
+    owner_phone_number: '555-1234',
+    rent_amount: 1200.00,
+    deposit: 1200.00
+  },
+  {
+    from: DateTime.now,
+    to: DateTime.now + 6.months,
+    address: '456 Elm St, Springfield',
+    owner_name: 'Jane Smith',
+    owner_phone_number: '555-5678',
+    rent_amount: 1500.00,
+    deposit: 1500.00
+  },
+  {
+    from: DateTime.now,
+    to: DateTime.now + 1.year,
+    address: '789 Oak St, Springfield',
+    owner_name: 'Alice Johnson',
+    owner_phone_number: '555-8765',
+    rent_amount: 1800.00,
+    deposit: 1800.00
+  }
+])
