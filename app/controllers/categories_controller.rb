@@ -7,22 +7,27 @@ class CategoriesController < ApplicationController
     # Initialize the category with the name
     @category = current_user.categories.new(name: category_params[:name])
 
-    # Parse dynamic fields and create a new hash
-    dynamic_fields = category_params[:dynamic_fields][:field_name]
-    fields_hash = dynamic_fields.each_with_object({}) do |field_name, hash|
-      # Only add non-empty field names to the hash
-      hash[field_name] = "String" unless field_name.blank?
+    # Check if dynamic fields exist and parse them
+    if category_params[:dynamic_fields] && category_params[:dynamic_fields][:field_name]
+      dynamic_fields = category_params[:dynamic_fields][:field_name]
+      fields_hash = dynamic_fields.each_with_object({}) do |field_name, hash|
+        # Only add non-empty field names to the hash
+        hash[field_name] = "" unless field_name.blank?
+      end
+
+      # Set the fields hash to the category
+      @category.fields = fields_hash
     end
 
-    debugger
-    # Set the fields hash to the category
-    @category.fields = fields_hash
-
     if @category.save
-      redirect_to new_category_path, notice: 'Category was successfully created.'
+      redirect_to categories_path, notice: 'Category was successfully created.'
     else
       render :new
     end
+  end
+
+  def index
+    @categories = current_user.categories
   end
 
   private

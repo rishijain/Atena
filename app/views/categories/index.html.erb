@@ -1,0 +1,27 @@
+<div class="bg-white min-h-screen p-6">
+  <h1 class="text-2xl font-bold mb-4">Categories</h1>
+
+  <div class="flex justify-between mb-4">
+    <div></div> <!-- Empty div for spacing -->
+    <%= link_to 'New Category', new_category_path, class: "bg-blue-400 text-white px-4 py-2 rounded hover:bg-blue-500" %>
+  </div>
+
+  <table class="min-w-full border-collapse border border-gray-200">
+    <thead>
+      <tr class="bg-gray-100">
+        <th class="border border-gray-300 px-4 py-2">Category Name</th>
+        <th class="border border-gray-300 px-4 py-2">Field Names</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @categories.each do |category| %>
+        <tr class="hover:bg-gray-50">
+          <td class="border border-gray-300 px-4 py-2 text-center"><%= category.name %></td>
+          <td class="border border-gray-300 px-4 py-2 text-center">
+            <%= category.fields&.keys&.join(", ") %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
