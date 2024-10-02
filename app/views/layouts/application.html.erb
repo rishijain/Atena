@@ -26,7 +26,7 @@
 
       <div class="flex">
         <!-- Left Sidebar -->
-        <div class="w-64 bg-white h-screen shadow-md">
+        <div class="w-64 bg-white h-screen shadow-md"> <!-- Ensure h-screen is applied -->
           <nav class="mt-5">
             <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">Dashboard</a>
             <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">Projects</a>
@@ -38,7 +38,7 @@
         </div>
 
         <!-- Main Content -->
-        <main class="flex-1 p-6">
+        <main class="container mx-auto mt-6 px-5">
           <% if notice %>
             <p class="notice bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4"><%= notice %></p>
           <% end %>
