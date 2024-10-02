@@ -1,0 +1,38 @@
+<div class="bg-white min-h-screen p-6"> <!-- Added background and padding -->
+  <h1 class="font-bold text-4xl">Categories#new</h1>
+  <p>Find me in app/views/categories/new.html.erb</p>
+
+  <%= form_with model: @category, local: true do |form| %>
+    <div class="mb-4">
+      <%= form.label :name, class: "block text-gray-700" %>
+      <%= form.text_field :name, class: "mt-1 block w-1/2 border-gray-300 rounded-md shadow-sm" %> <!-- Changed width to 1/2 for a smaller box -->
+    </div>
+
+    <div id="fields-container">
+      <!-- Dynamic fields will be added here -->
+    </div>
+
+    <button type="button" id="add-field" class="mt-2 bg-black text-white px-4 py-2 rounded">Add Field</button>
+
+    <div class="mt-4">
+      <%= form.submit "Save Category", class: "mt-2 px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-400 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300" %> <!-- Updated button style to match -->
+    </div>
+  <% end %>
+</div>
+
+<script>
+  document.getElementById('add-field').addEventListener('click', function() {
+    const container = document.getElementById('fields-container');
+    const newField = document.createElement('div');
+    newField.className = 'mt-2';
+    newField.innerHTML = `
+      <select class="block w-full border-gray-300 rounded-md shadow-sm">
+        <option value="">Select an option</option>
+        <option value="Option 1">Option 1</option>
+        <option value="Option 2">Option 2</option>
+        <option value="Option 3">Option 3</option>
+      </select>
+    `;
+    container.appendChild(newField);
+  });
+</script>
