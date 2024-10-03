@@ -1,0 +1,30 @@
+<div class="bg-white min-h-screen p-6">
+  <h1 class="text-2xl font-bold mb-4">New Record for <%= @category.name %></h1>
+
+  <% if @record.errors.any? %>
+    <div class="mb-4">
+      <ul class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
+        <% @record.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form_with(model: [@category, @record], local: true) do |form| %>
+    <div class="mb-4">
+      <% @category.fields.each do |field_name, field_type| %>
+        <div class="mb-4">
+          <%= form.label field_name, field_name.humanize, class: "block text-sm font-medium text-gray-700" %>
+          <%= form.text_field "#{field_name}", class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200" %>
+        </div>
+      <% end %>
+    </div>
+
+    <div>
+      <%= form.submit 'Create Record', class: "bg-blue-400 text-white px-4 py-2 rounded hover:bg-blue-500" %>
+    </div>
+  <% end %>
+
+  <%= link_to 'Back', category_records_path(@category), class: "mt-4 text-blue-500 hover:underline" %>
+</div>

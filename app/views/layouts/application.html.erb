@@ -30,7 +30,7 @@
           <nav class="mt-5">
             <%= link_to 'Rent Agreements', rent_agreements_path, class: "block px-4 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700" %>
             <% current_user.categories.each do |category| %> <!-- Iterate over categories -->
-              <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700"><%= category.name %></a>
+              <%= link_to category.name, category_records_path(category), class: "block px-4 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700" %> <!-- Updated link to point to records index -->
             <% end %> <!-- End of categories iteration -->
             
             <%= link_to 'Categories', categories_path, class: "block px-4 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700" %> <!-- Updated link -->
