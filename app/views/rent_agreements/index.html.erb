@@ -1,16 +1,16 @@
 <!-- app/views/rent_agreements/index.html.erb -->
 <div class="bg-white min-h-screen p-6">
   <h1 class="text-2xl font-bold mb-4">Rent Agreements</h1>
-
   <div class="flex justify-between mb-4">
-    <div></div> <!-- Empty div for spacing -->
+    <div></div>
+    <!-- Empty div for spacing -->
     <%= link_to 'New Rent Agreement', new_rent_agreement_path, class: "bg-blue-400 text-white px-4 py-2 rounded hover:bg-blue-500" %> <!-- Reverted button color to blue -->
   </div>
-
   <table class="min-w-full border-collapse border border-gray-200">
     <thead>
       <tr class="bg-gray-100">
-        <th class="border border-gray-300 px-4 py-2">Name</th> <!-- Moved Name to the first column -->
+        <th class="border border-gray-300 px-4 py-2">Name</th>
+        <!-- Moved Name to the first column -->
         <th class="border border-gray-300 px-4 py-2">From</th>
         <th class="border border-gray-300 px-4 py-2">To</th>
         <th class="border border-gray-300 px-4 py-2">Address</th>
@@ -24,7 +24,8 @@
     <tbody>
       <% @rent_agreements.each do |rent_agreement| %>
         <tr class="hover:bg-gray-50">
-          <td class="border border-gray-300 px-4 py-2"><%= rent_agreement.name %></td> <!-- Added Name data -->
+          <td class="border border-gray-300 px-4 py-2"><%= rent_agreement.name %></td>
+          <!-- Added Name data -->
           <td class="border border-gray-300 px-4 py-2"><%= rent_agreement.from %></td>
           <td class="border border-gray-300 px-4 py-2"><%= rent_agreement.to %></td>
           <td class="border border-gray-300 px-4 py-2"><%= rent_agreement.address %></td>
@@ -33,9 +34,8 @@
           <td class="border border-gray-300 px-4 py-2"><%= rent_agreement.rent_amount %></td>
           <td class="border border-gray-300 px-4 py-2"><%= rent_agreement.deposit %></td>
           <td class="border border-gray-300 px-4 py-2">
-            <%= link_to 'Show', rent_agreement, class: "text-blue-500 hover:underline" %> |
             <%= link_to 'Edit', edit_rent_agreement_path(rent_agreement), class: "text-blue-500 hover:underline" %> |
-            <%= link_to 'Destroy', rent_agreement, method: :delete, data: { confirm: 'Are you sure?' }, class: "text-red-500 hover:underline" %>
+            <%= link_to "Destroy", rent_agreement, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "text-red-500 hover:underline" %>
           </td>
         </tr>
       <% end %>

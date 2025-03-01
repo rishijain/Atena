@@ -15,7 +15,7 @@ class RentAgreementsController < ApplicationController
   def create
     @rent_agreement = RentAgreement.new(rent_agreement_params)
     if @rent_agreement.save
-      redirect_to @rent_agreement, notice: 'Rent agreement was successfully created.'
+      redirect_to rent_agreements_url, notice: 'Rent agreement was successfully created.'
     else
       render :new
     end
