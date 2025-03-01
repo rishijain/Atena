@@ -44,6 +44,6 @@ class RentAgreementsController < ApplicationController
   end
 
   def rent_agreement_params
-    params.require(:rent_agreement).permit(:name, :from, :to, :address, :owner_name, :owner_phone_number, :rent_amount, :deposit)
+    params.require(:rent_agreement).permit(:name, :from, :to, :address, :owner_name, :owner_phone_number, :rent_amount, :deposit, :url)
   end
 end

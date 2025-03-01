@@ -36,6 +36,7 @@
           <td class="border border-gray-300 px-4 py-2">
             <%= link_to 'Edit', edit_rent_agreement_path(rent_agreement), class: "text-blue-500 hover:underline" %> |
             <%= link_to "Destroy", rent_agreement, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "text-red-500 hover:underline" %>
+            <%= link_to 'Download', rent_agreement.url, target: "_blank", class: "text-green-500 hover:underline" %>
           </td>
         </tr>
       <% end %>

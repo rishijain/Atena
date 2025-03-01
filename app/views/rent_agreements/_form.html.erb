@@ -48,6 +48,10 @@
         <%= form.label :deposit, class: 'block text-gray-700' %>
         <%= form.number_field :deposit, class: 'mt-1 block w-1/3 border-gray-300 rounded-md shadow-sm' %>
       </div>
+      <div class="mb-4">
+        <%= form.label :url, class: 'block text-gray-700' %>
+        <%= form.text_field :url, class: 'mt-1 block w-1/3 border-gray-300 rounded-md shadow-sm' %>
+      </div>
       <div class="mt-4">
         <%= form.submit 'Save Rent Agreement', class: 'px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-400 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300' %>
       </div>
