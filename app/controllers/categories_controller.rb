@@ -33,6 +33,6 @@ class CategoriesController < ApplicationController
   private
 
   def category_params
-    params.require(:category).permit(:name, fields: {}, dynamic_fields: {})
+    params.require(:category).permit(:name, :category_id, fields: {}, dynamic_fields: {})
   end
 end

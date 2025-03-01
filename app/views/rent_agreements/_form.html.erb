@@ -1,0 +1,47 @@
+<%= form_with(model: @rent_agreement, local: true) do |form| %>
+  <% if @rent_agreement.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@rent_agreement.errors.count, "error") %> prohibited this rent_agreement from being saved:</h2>
+      <ul>
+        <% @rent_agreement.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+  <div class="field">
+    <%= form.label :from %>
+    <%= form.date_select :from %>
+  </div>
+  <div class="field">
+    <%= form.label :to %>
+    <%= form.date_select :to %>
+  </div>
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+  </div>
+  <div class="field">
+    <%= form.label :owner_name %>
+    <%= form.text_field :owner_name %>
+  </div>
+  <div class="field">
+    <%= form.label :owner_phone_number %>
+    <%= form.text_field :owner_phone_number %>
+  </div>
+  <div class="field">
+    <%= form.label :rent_amount %>
+    <%= form.number_field :rent_amount %>
+  </div>
+  <div class="field">
+    <%= form.label :deposit %>
+    <%= form.number_field :deposit %>
+  </div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
