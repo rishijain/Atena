@@ -1,34 +1,32 @@
 <!-- app/views/records/index.html.erb -->
 <div class="bg-white min-h-screen p-6">
-  <h1 class="text-2xl font-bold mb-4">Records for <%= @category.name %></h1> <!-- Display category name -->
+  <h1 class="text-2xl font-bold mb-6"><%= @category.name %> Records</h1>
 
-  <div class="flex justify-between mb-4">
-    <div></div> <!-- Empty div for spacing -->
-    <%= link_to 'New Record', new_category_record_path(@category), class: "bg-blue-400 text-white px-4 py-2 rounded hover:bg-blue-500" %> <!-- Updated link -->
+  <!-- New Record Button -->
+  <div class="mb-6">
+    <%= link_to "New #{@category.name} Record", new_category_record_path(@category), 
+        class: "bg-blue-400 text-white px-4 py-2 rounded hover:bg-blue-500" %>
   </div>
 
-  <table class="min-w-full border-collapse border border-gray-200">
-    <thead>
-      <tr class="bg-gray-100">
-        <% @category.fields.keys.each do |field| %> <!-- Iterate over category fields -->
-          <th class="border border-gray-300 px-4 py-2"><%= field.humanize %></th> <!-- Column names from category fields -->
-        <% end %>
-        <th class="border border-gray-300 px-4 py-2">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @records.each do |record| %> <!-- Iterate over records -->
-        <tr class="hover:bg-gray-50">
-          <% @category.fields.keys.each do |field| %> <!-- Iterate over category fields for record data -->
-            <td class="border border-gray-300 px-4 py-2"><%= record.data[field] %></td> <!-- Record data from record.data hash -->
+  <!-- Records Table -->
+  <div class="overflow-x-auto">
+    <table class="min-w-full border-collapse border border-gray-200">
+      <thead>
+        <tr class="bg-gray-100">
+          <% @category.fields.keys.each do |field| %>
+            <th class="border border-gray-300 px-4 py-2 text-left"><%= field.humanize %></th>
           <% end %>
-          <td class="border border-gray-300 px-4 py-2">
-            <%= link_to 'Show', record, class: "text-blue-500 hover:underline" %> |
-            <%= link_to 'Edit', edit_record_path(record), class: "text-blue-500 hover:underline" %> |
-            <%= link_to 'Destroy', record, method: :delete, data: { confirm: 'Are you sure?' }, class: "text-red-500 hover:underline" %>
-          </td>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @records.each do |record| %>
+          <tr class="hover:bg-gray-50">
+            <% @category.fields.keys.each do |field| %>
+              <td class="border border-gray-300 px-4 py-2"><%= record.data[field] %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
