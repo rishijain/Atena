@@ -1,6 +1,6 @@
 class RecordsController < ApplicationController
   before_action :set_category
-  # before_action :set_record, only: [:edit, :update, :destroy]
+  before_action :set_record, only: [:edit, :update]
 
   def index
     @records = @category.records
@@ -20,6 +20,17 @@ class RecordsController < ApplicationController
     else
       @records = @category.records
       render :index
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @record.update(record_params)
+      redirect_to category_records_path(@category), notice: 'Record was successfully updated.'
+    else
+      render :edit
     end
   end
 
