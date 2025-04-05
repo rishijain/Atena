@@ -7,7 +7,6 @@ class CategoriesController < ApplicationController
     # Initialize the category with the name
     @category = current_user.categories.new(name: category_params[:name])
 
-    debugger
     # Check if dynamic fields exist and parse them
     if category_params[:dynamic_fields] && category_params[:dynamic_fields][:field_name]
       dynamic_field_names = category_params[:dynamic_fields][:field_name]
@@ -31,6 +30,31 @@ class CategoriesController < ApplicationController
 
   def index
     @categories = current_user.categories
+  end
+
+  def edit
+    @category = current_user.categories.find(params[:id])
+  end
+
+  def update
+    @category = current_user.categories.find(params[:id])
+    
+    if category_params[:dynamic_fields] && category_params[:dynamic_fields][:field_name]
+      dynamic_field_names = category_params[:dynamic_fields][:field_name]
+      dynamic_field_types = category_params[:dynamic_fields][:field_type]
+      fields_hash = dynamic_field_names.each_with_index.each_with_object({}) do |(field_name, index), hash|
+        field_type = dynamic_field_types[index]
+        hash[field_name] = field_type unless field_name.blank?
+      end
+      
+      @category.fields = fields_hash
+    end
+
+    if @category.update(name: category_params[:name])
+      redirect_to categories_path, notice: 'Category was successfully updated.'
+    else
+      render :edit
+    end
   end
 
   private

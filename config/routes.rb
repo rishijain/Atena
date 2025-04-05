@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :rent_agreements
-  resources :categories, only: [:new, :create, :index] do
+  resources :categories, only: [:new, :create, :index, :edit, :update] do
     resources :records, only: [:index, :new, :create, :edit, :update, :destroy]
   end
 
