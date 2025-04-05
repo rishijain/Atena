@@ -80,5 +80,5 @@ test:
 production:
   <<: *default
   database: atena_production
+  url: <%= ENV["DATABASE_URL"] %>
   username: atena
-  password: <%= ENV["ATENA_DATABASE_PASSWORD"] %>
