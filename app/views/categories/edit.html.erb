@@ -1,0 +1,66 @@
+<div class="min-h-screen flex flex-col justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+  <div class="w-full space-y-8 bg-white p-10 rounded-lg shadow-md">
+    <h1 class="font-bold text-3xl">Edit Category</h1>
+
+    <%= form_with(model: @category, local: true) do |form| %>
+      <% if @category.errors.any? %>
+        <div class="bg-red-50 text-red-500 p-4 rounded mb-4">
+          <h4><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h4>
+          <ul class="list-disc pl-5">
+            <% @category.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="mb-4">
+        <%= form.label :name, class: "block text-gray-700" %>
+        <%= form.text_field :name, class: "mt-1 block w-1/3 border-gray-300 rounded-md shadow-sm" %>
+      </div>
+
+      <div id="fields-container">
+        <% @category.fields.each do |field_name, field_type| %>
+          <div class="mt-2 flex items-center space-x-2">
+            <%= form.fields_for :dynamic_fields do |df| %>
+              <%= df.text_field "field_name[]", 
+                  value: field_name, 
+                  class: "block w-1/3 border-gray-300 rounded-md shadow-sm",
+                  placeholder: "Enter field name" %>
+              <%= df.select "field_type[]", 
+                  options_for_select([
+                    ['String', 'string'], 
+                    ['Date', 'date']
+                  ], field_type),
+                  {},
+                  class: "block w-1/3 border-gray-300 rounded-md shadow-sm" %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+
+      <button type="button" id="add-field" class="mt-2 bg-black text-white px-4 py-2 rounded">Add Field</button>
+
+      <div class="mt-4">
+        <%= form.submit "Update Category", 
+            class: "px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-400 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<script>
+  document.getElementById('add-field').addEventListener('click', function() {
+    const container = document.getElementById('fields-container');
+    const newField = document.createElement('div');
+    newField.className = 'mt-2 flex items-center space-x-2';
+    newField.innerHTML = `
+      <input type="text" name="category[dynamic_fields][field_name][]" placeholder="Enter field name" class="block w-1/3 border-gray-300 rounded-md shadow-sm" />
+      <select name="category[dynamic_fields][field_type][]" class="block w-1/3 border-gray-300 rounded-md shadow-sm">
+        <option value="string">String</option>
+        <option value="date">Date</option>
+      </select>
+    `;
+    container.appendChild(newField);
+  });
+</script> 
