@@ -1,6 +1,6 @@
 class RecordsController < ApplicationController
   before_action :set_category
-  before_action :set_record, only: [:edit, :update]
+  before_action :set_record, only: [:edit, :update, :destroy]
 
   def index
     @records = @category.records
@@ -32,6 +32,11 @@ class RecordsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @record.destroy
+    redirect_to category_records_path(@category), notice: 'Record was successfully deleted.'
   end
 
   private

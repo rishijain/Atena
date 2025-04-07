@@ -26,7 +26,7 @@
                 <% if @category.fields[field] == "date" %>
                   <%= record.data[field]&.to_date&.strftime("%Y-%m-%d") %>
                 <% else %>
-                  <%= record.data[field] %>
+                  <%= record.data[field].truncate(50) %>
                 <% end %>
               </td>
             <% end %>
