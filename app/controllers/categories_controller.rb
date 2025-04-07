@@ -42,12 +42,17 @@ class CategoriesController < ApplicationController
     if category_params[:dynamic_fields] && category_params[:dynamic_fields][:field_name]
       dynamic_field_names = category_params[:dynamic_fields][:field_name]
       dynamic_field_types = category_params[:dynamic_fields][:field_type]
-      fields_hash = dynamic_field_names.each_with_index.each_with_object({}) do |(field_name, index), hash|
+      
+      # Create a hash of new fields
+      new_fields_hash = dynamic_field_names.each_with_index.each_with_object({}) do |(field_name, index), hash|
         field_type = dynamic_field_types[index]
         hash[field_name] = field_type unless field_name.blank?
       end
       
-      @category.fields = fields_hash
+      # Merge new fields with existing fields
+      # existing_fields will be an empty hash if @category.fields is nil
+      existing_fields = @category.fields || {}
+      @category.fields = existing_fields.merge(new_fields_hash)
     end
 
     if @category.update(name: category_params[:name])
